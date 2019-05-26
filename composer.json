@@ -8,6 +8,9 @@
     ],
     "require": {},
     "autoload": {
+        "files": [
+            "src/FabricatorHelper.php"
+        ],
         "psr-4": {
             "Fabricator\\": "src/",
             "Test\\" : "tests/",

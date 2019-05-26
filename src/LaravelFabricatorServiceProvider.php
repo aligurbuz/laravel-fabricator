@@ -37,7 +37,7 @@ class LaravelFabricatorServiceProvider extends ServiceProvider implements Deferr
         // this section, which can only be published for the console,
         // copies the fabric directory of the package into the app directory of your application.
         if($this->app->runningInConsole()){
-            $this->publishes([__DIR__ . '/resources/Publish' =>app_path()],'fabric');
+            $this->publishes([__DIR__ . '/resources/Publish' => app_path()],'fabric');
         }
     }
 
