@@ -1,6 +1,6 @@
 <?php
 
-namespace Fabricator\Resource\Publish\Fabric;
+namespace App\Fabric;
 
 class FabricManager extends FabricManagerAbstract
 {
