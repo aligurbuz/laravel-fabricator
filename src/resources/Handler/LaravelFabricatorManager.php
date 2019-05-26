@@ -12,7 +12,7 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FactoryMana
     public function generate()
     {
         //first we create the fabric directory.
-        $this->makeSkeletonFabricDirectory();
+        $this->generateSkeletonFabricDirectory();
 
         return true;
     }
@@ -22,7 +22,7 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FactoryMana
      *
      * @return void
      */
-    public function makeSkeletonFabricDirectory()
+    protected function generateSkeletonFabricDirectory()
     {
         // after making directory checks by using the files object..
         // that is registered in laravel container, we create a directory with the same object.
