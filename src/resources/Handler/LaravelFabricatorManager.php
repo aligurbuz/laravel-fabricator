@@ -4,7 +4,7 @@ namespace Fabricator\Resource\Handler;
 
 use Fabricator\Resource\Contracts\FactoryManagerContract;
 
-class LaravelFabricatorManager implements FactoryManagerContract
+class LaravelFabricatorManager extends FabricatorAbstract implements FactoryManagerContract
 {
     /**
      * @return mixed|string
