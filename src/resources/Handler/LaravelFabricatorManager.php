@@ -2,7 +2,15 @@
 
 namespace Fabricator\Resource\Handler;
 
-class LaravelFabricatorManager
-{
+use Fabricator\Resource\Contracts\FactoryManagerContract;
 
+class LaravelFabricatorManager implements FactoryManagerContract
+{
+    /**
+     * @return mixed|string
+     */
+    public function generate()
+    {
+        return 'fabricate';
+    }
 }

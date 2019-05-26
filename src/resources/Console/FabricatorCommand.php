@@ -2,6 +2,7 @@
 
 namespace Fabricator\Resource\Console;
 
+use Fabricator\Fabricator;
 use Illuminate\Console\Command;
 
 class FabricatorCommand extends Command
@@ -37,6 +38,6 @@ class FabricatorCommand extends Command
      */
     public function handle()
     {
-        $this->info('laravel fabric');
+        $this->info(Fabricator::generate());
     }
 }
