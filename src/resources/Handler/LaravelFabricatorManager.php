@@ -11,6 +11,6 @@ class LaravelFabricatorManager implements FactoryManagerContract
      */
     public function generate()
     {
-        return 'fabricate';
+        return app()->basePath();
     }
 }
