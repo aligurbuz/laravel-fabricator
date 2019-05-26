@@ -44,4 +44,24 @@ abstract class FabricatorAbstract
     {
         return $this->fabricPath.''.DIRECTORY_SEPARATOR.'Fabric';
     }
+
+    /**
+     * get fabric manager file name
+     *
+     * @return string
+     */
+    public function getFabricManagerFile()
+    {
+        return $this->getFabricDirectoryPath().''.DIRECTORY_SEPARATOR.'FabricManager.php';
+    }
+
+    /**
+     * get factory manager stub file in console directory
+     *
+     * @return string
+     */
+    public function getFactoryManagerInStub()
+    {
+        return __DIR__.''.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'Console'.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'FabricManager.stub';
+    }
 }
