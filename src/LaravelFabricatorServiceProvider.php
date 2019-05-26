@@ -4,9 +4,10 @@ namespace Fabricator;
 
 use Illuminate\Support\ServiceProvider;
 use Fabricator\Resource\Console\FabricatorCommand;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Fabricator\Resource\Handler\LaravelFabricatorManager;
 
-class LaravelFabricatorServiceProvider extends ServiceProvider
+class LaravelFabricatorServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
      * Register services.
@@ -34,5 +35,15 @@ class LaravelFabricatorServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['fabricator'];
     }
 }
