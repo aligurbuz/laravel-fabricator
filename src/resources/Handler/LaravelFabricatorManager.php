@@ -23,7 +23,7 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FactoryMana
     }
 
     /**
-     * generate manager files for fabricator directory
+     * it generates manager files in fabricator directory.
      *
      * @return bool
      *
