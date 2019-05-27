@@ -5,6 +5,7 @@ namespace Fabricator\Resource\Handler;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Foundation\Application;
 use Fabricator\Resource\Exception\FabricatorHandlingException;
+use Fabricator\Resource\Exception\LaravelContainerFilesystemException;
 
 abstract class FabricatorAbstract
 {
@@ -28,14 +29,19 @@ abstract class FabricatorAbstract
      * @param Application $app
      *
      * @throws FabricatorHandlingException
+     * @throws LaravelContainerFilesystemException
      */
     public function __construct(Application $app)
     {
-        if($app->runningInConsole()===false){
+        if($app->runningInConsole() === false){
             throw new FabricatorHandlingException;
         }
 
         $this->app = $app;
+
+        if($this->app['files'] instanceof Filesystem === false ){
+            throw new LaravelContainerFilesystemException;
+        }
 
         $this->files = $this->app['files'];
 
