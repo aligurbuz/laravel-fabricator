@@ -38,7 +38,7 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FactoryMana
                 $fabricatorManagerStub = $this->files->get($this->getFabricatorManagerInStub());
 
                 //the content of fabricatorManager.stub file will be write fabricatorManager file
-                return $this->files->put($this->getFabricatorManagerFile(),$fabricatorManagerStub)===false ?:  true;
+                return $this->files->put($this->getFabricatorManagerFile(),$fabricatorManagerStub) === false ?:  true;
             }
         }
 
