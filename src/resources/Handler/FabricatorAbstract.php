@@ -2,9 +2,9 @@
 
 namespace Fabricator\Resource\Handler;
 
-use Fabricator\Resource\Exception\FabricatorHandlingException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Foundation\Application;
+use Fabricator\Resource\Exception\FabricatorHandlingException;
 
 abstract class FabricatorAbstract
 {
