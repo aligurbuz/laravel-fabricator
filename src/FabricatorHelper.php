@@ -1,9 +1,9 @@
 <?php
 
-if (! function_exists('env')) {
+if (! function_exists('fabricator')) {
 
-    function fabric()
+    function fabricator()
     {
-        return 'fabric';
+        return 'fabricator';
     }
 }
