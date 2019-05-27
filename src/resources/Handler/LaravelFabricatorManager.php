@@ -17,16 +17,13 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FactoryMana
         //first we create the fabric directory.
         $this->generateSkeletonFabricDirectory();
 
-        //we add manager classes into the fabric directory.
-        $this->generateSkeletonFabricManagerFiles();
-
         return true;
     }
 
     /**
      * generate skeleton fabric directory
      *
-     * @return void
+     * @throws FileNotFoundException
      */
     protected function generateSkeletonFabricDirectory()
     {
@@ -34,25 +31,15 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FactoryMana
         // that is registered in laravel container, we create a directory with the same object.
         if(!$this->files->isDirectory($this->getFabricDirectoryPath())){
             $this->files->makeDirectory($this->getFabricDirectoryPath());
-        }
-    }
 
-    /**
-     * generate skeleton fabric manager files
-     *
-     * @throws FileNotFoundException
-     */
-    protected function generateSkeletonFabricManagerFiles()
-    {
-        // the fabric manager classes will be created...
-        // only once and will serve as the fabric manager.
-        if(!$this->files->isFile($this->getFabricManagerFile())){
+            // the fabric manager classes will be created...
+            // only once and will serve as the fabric manager.
+            if(!$this->files->isFile($this->getFabricManagerFile())){
+                $factoryManagerStub = $this->files->get($this->getFactoryManagerInStub());
 
-            //get the content of factoryManager.stub file in console/stubs directory
-            $factoryManagerStub = $this->files->get($this->getFactoryManagerInStub());
-
-            //the content of factoryManager.stub file will be write fabric manager file
-            $this->files->put($this->getFabricManagerFile(),$factoryManagerStub);
+                //the content of factoryManager.stub file will be write fabric manager file
+                $this->files->put($this->getFabricManagerFile(),$factoryManagerStub);
+            }
         }
     }
 }
