@@ -8,6 +8,8 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 class LaravelFabricatorManager extends FabricatorAbstract implements FactoryManagerContract
 {
     /**
+     * it generates a fabricator structure with all its everything.
+     *
      * @return bool|mixed
      *
      * @throws FileNotFoundException
