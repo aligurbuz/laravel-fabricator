@@ -19,7 +19,7 @@ class FabricatorCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Create Fabric Model For Laravel';
+    protected $description = 'Create Fabricator Model For Laravel';
 
     /**
      * Create a new command instance.
