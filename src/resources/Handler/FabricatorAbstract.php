@@ -2,6 +2,7 @@
 
 namespace Fabricator\Resource\Handler;
 
+use Fabricator\Resource\Exception\FabricatorHandlingException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Foundation\Application;
 
@@ -25,9 +26,15 @@ abstract class FabricatorAbstract
     /**
      * FabricatorAbstract constructor.
      * @param Application $app
+     *
+     * @throws FabricatorHandlingException
      */
     public function __construct(Application $app)
     {
+        if($app->runningInConsole()===false){
+            throw new FabricatorHandlingException;
+        }
+
         $this->app = $app;
 
         $this->files = $this->app['files'];
