@@ -15,17 +15,17 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FactoryMana
     public function generate()
     {
         //first we create the fabricator directory.
-        $this->generateSkeletonForFabricatorDirectory();
+        $this->generateManagerForFabricatorDirectory();
 
         return true;
     }
 
     /**
-     * generate skeleton for fabricator directory
+     * generate manager files for fabricator directory
      *
      * @throws FileNotFoundException
      */
-    public function generateSkeletonForFabricatorDirectory()
+    public function generateManagerForFabricatorDirectory()
     {
         // after making directory checks by using the files object..
         // that is registered in laravel container, we create a directory with the same object.
