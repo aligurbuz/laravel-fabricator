@@ -29,16 +29,16 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FactoryMana
     {
         // after making directory checks by using the files object..
         // that is registered in laravel container, we create a directory with the same object.
-        if(!$this->files->isDirectory($this->getFabricDirectoryPath())){
-            $this->files->makeDirectory($this->getFabricDirectoryPath());
+        if(!$this->files->isDirectory($this->getFabricatorDirectoryPath())){
+            $this->files->makeDirectory($this->getFabricatorDirectoryPath());
 
-            // the fabric manager classes will be created...
-            // only once and will serve as the fabric manager.
-            if(!$this->files->isFile($this->getFabricManagerFile())){
-                $factoryManagerStub = $this->files->get($this->getFactoryManagerInStub());
+            // the fabricator manager classes will be created...
+            // only once and will serve as the fabricator manager.
+            if(!$this->files->isFile($this->getFabricatorManagerFile())){
+                $fabricatorManagerStub = $this->files->get($this->getFabricatorManagerInStub());
 
                 //the content of factoryManager.stub file will be write fabric manager file
-                $this->files->put($this->getFabricManagerFile(),$factoryManagerStub);
+                $this->files->put($this->getFabricatorManagerFile(),$fabricatorManagerStub);
             }
         }
     }

@@ -12,7 +12,7 @@ class FabricatorCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:fabric';
+    protected $signature = 'make:fabricator';
 
     /**
      * The console command description.
