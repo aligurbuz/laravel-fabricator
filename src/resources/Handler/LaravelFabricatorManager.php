@@ -30,11 +30,11 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FactoryMana
         // after making directory checks by using the files object..
         // that is registered in laravel container, we create a directory with the same object.
         if(!$this->files->isDirectory($this->getFabricatorDirectoryPath())){
-            $makeDirectory = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
+            $isCreatedFabricatorDirectoryPath = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
 
             // the fabricator manager classes will be created...
             // only once and will serve as the fabricator manager.
-            if($makeDirectory && !$this->files->isFile($this->getFabricatorManagerFile())){
+            if($isCreatedFabricatorDirectoryPath && !$this->files->isFile($this->getFabricatorManagerFile())){
                 $fabricatorManagerStub = $this->files->get($this->getFabricatorManagerInStub());
 
                 //the content of fabricatorManager.stub file will be write fabricatorManager file
