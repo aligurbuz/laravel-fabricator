@@ -42,7 +42,7 @@ abstract class FabricatorAbstract
      */
     public function getFabricatorDirectoryPath()
     {
-        return $this->fabricPath.''.DIRECTORY_SEPARATOR.'Fabricator';
+        return implode(DIRECTORY_SEPARATOR,[$this->fabricPath,'Fabricator']);
     }
 
     /**
@@ -52,7 +52,7 @@ abstract class FabricatorAbstract
      */
     public function getFabricatorManagerFile()
     {
-        return $this->getFabricatorDirectoryPath().''.DIRECTORY_SEPARATOR.'FabricatorManager.php';
+        return implode(DIRECTORY_SEPARATOR,[$this->getFabricatorDirectoryPath(),'FabricatorManager.php']);
     }
 
     /**
@@ -62,6 +62,6 @@ abstract class FabricatorAbstract
      */
     public function getFabricatorManagerInStub()
     {
-        return __DIR__.''.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'Console'.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'FabricatorManager.stub';
+        return implode(DIRECTORY_SEPARATOR,[__DIR__,'..','Console','stubs','FabricatorManager.stub']);
     }
 }
