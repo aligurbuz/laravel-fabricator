@@ -18,7 +18,7 @@ class LaravelFabricatorServiceProvider extends ServiceProvider implements Deferr
     {
         // with the name fabricator abstract,
         // we save the laravelFabricatorManager class to the container object as a singleton.
-        $this->app->singleton('fabricator',function($app,$arguments){
+        $this->app->singleton('fabricator',function($app,$arguments=array()){
             return new LaravelFabricatorManager($app,$arguments);
         });
 
