@@ -59,7 +59,7 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
      */
     public function loadManagerFiles() : bool
     {
-        if($this->isCreated || $this->files->exists($this->getFabricatorDirectoryPath())){
+        if($this->files->exists($this->getFabricatorDirectoryPath())){
             foreach ($this->managerFiles as $file){
 
                 $managerFile = 'get'.$file.'File';
