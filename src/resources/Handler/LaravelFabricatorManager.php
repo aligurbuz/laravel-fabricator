@@ -61,11 +61,14 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
      */
     public function setFabricatorManagerFiles() : bool
     {
+        //manager files can only be created if the fabricator directory is available.
         if($this->files->exists($this->getFabricatorDirectoryPath())){
             foreach ($this->managerFiles as $file){
 
                 $managerFile = 'get'.$file.'File';
 
+                // the manager files will be created
+                // if the isCreated property is true and the file does not exist.
                 if($this->isCreated && !$this->files->isFile($this->{$managerFile}())){
                     $managerStub = $this->files->get($this->{$managerFile}(true));
 
@@ -85,6 +88,7 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
      */
     public function setFabricatorDirectoryPath() : bool
     {
+        //set fabricator directory
         $this->isCreated = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
 
         return $this->isCreated;
