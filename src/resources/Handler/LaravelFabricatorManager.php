@@ -10,12 +10,11 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
     /**
      * it generates a fabricator structure with all its everything.
      *
-     * @param $arguments
      * @return bool|mixed
      *
      * @throws FileNotFoundException
      */
-    public function generate($arguments)
+    public function generate()
     {
         //first we create the fabricator directory.
         $this->generateManagerForFabricatorDirectory();

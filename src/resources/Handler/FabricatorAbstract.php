@@ -25,13 +25,19 @@ abstract class FabricatorAbstract
     protected $fabricPath;
 
     /**
+     * @var array
+     */
+    protected $arguments;
+
+    /**
      * FabricatorAbstract constructor.
      * @param Application $app
      *
+     * @param array $arguments
      * @throws FabricatorHandlingException
      * @throws LaravelContainerFilesystemException
      */
-    public function __construct(Application $app)
+    public function __construct(Application $app,$arguments=array())
     {
         if($app->runningInConsole() === false){
             throw new FabricatorHandlingException;
@@ -46,6 +52,8 @@ abstract class FabricatorAbstract
         $this->files = $this->app['files'];
 
         $this->fabricPath = app_path();
+
+        $this->arguments = $arguments;
     }
 
     /**
