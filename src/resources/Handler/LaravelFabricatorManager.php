@@ -3,6 +3,7 @@
 namespace Fabricator\Resource\Handler;
 
 use Fabricator\Resource\Contracts\FabricatorManager;
+use Fabricator\Resource\Exception\ManagerFilesCreatingException;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorManager
@@ -27,12 +28,20 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
      * @return bool|mixed
      *
      * @throws FileNotFoundException
+     * @throws ManagerFilesCreatingException
      */
     public function generate()
     {
         //first we create the fabricator directory.
         if(!$this->files->isDirectory($this->getFabricatorDirectoryPath())){
             $this->generateManagerForFabricatorDirectory();
+
+            // if there is any error in the creation of the manager files,
+            // we destroy the fabricator structure directly.
+            if(!$this->isCreated){
+                $this->files->deleteDirectory($this->getFabricatorDirectoryPath());
+                throw new ManagerFilesCreatingException;
+            }
         }
 
         return true;
