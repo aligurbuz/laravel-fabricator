@@ -17,7 +17,9 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
     public function generate()
     {
         //first we create the fabricator directory.
-        $this->generateManagerForFabricatorDirectory();
+        if(!$this->files->isDirectory($this->getFabricatorDirectoryPath())){
+            $this->generateManagerForFabricatorDirectory();
+        }
 
         return true;
     }
@@ -35,20 +37,18 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
 
         // after making directory checks by using the files object..
         // that is registered in laravel container, we create a directory with the same object.
-        if(!$this->files->isDirectory($this->getFabricatorDirectoryPath())){
-            $isCreatedFabricatorDirectoryPath = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
+        $isCreatedFabricatorDirectoryPath = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
 
-            //this creates fabricatorManager.php
-            if($isCreatedFabricatorDirectoryPath && !$this->files->isFile($this->getFabricatorManagerFile())){
-                $fabricatorManagerStub = $this->files->get($this->getFabricatorManagerInStub());
-                $isCreatedFabricatorManagerFile = $this->files->put($this->getFabricatorManagerFile(),$fabricatorManagerStub) === false ?:  true;
-            }
+        //this creates fabricatorManager.php
+        if($isCreatedFabricatorDirectoryPath && !$this->files->isFile($this->getFabricatorManagerFile())){
+            $fabricatorManagerStub = $this->files->get($this->getFabricatorManagerInStub());
+            $isCreatedFabricatorManagerFile = $this->files->put($this->getFabricatorManagerFile(),$fabricatorManagerStub) === false ?:  true;
+        }
 
-            //this creates fabricatorAbstract.php
-            if($isCreatedFabricatorManagerFile && !$this->files->isFile($this->getFabricatorAbstractFile())){
-                $fabricatorAbstractStub = $this->files->get($this->getFabricatorAbstractInStub());
-                return $this->files->put($this->getFabricatorAbstractFile(),$fabricatorAbstractStub) === false ?:  true;
-            }
+        //this creates fabricatorAbstract.php
+        if($isCreatedFabricatorManagerFile && !$this->files->isFile($this->getFabricatorAbstractFile())){
+            $fabricatorAbstractStub = $this->files->get($this->getFabricatorAbstractInStub());
+            return $this->files->put($this->getFabricatorAbstractFile(),$fabricatorAbstractStub) === false ?:  true;
         }
 
         return false;
