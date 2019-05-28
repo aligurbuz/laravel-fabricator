@@ -12,7 +12,8 @@ class FabricatorCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:fabricator';
+    protected $signature = 'make:fabricator {--fabricator= : creates any fabricator class}
+                                            {--resource= : creates any resource in fabricator class}';
 
     /**
      * The console command description.
@@ -34,10 +35,10 @@ class FabricatorCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
-        $this->info(Fabricator::generate());
+        $this->info(Fabricator::generate($this->options()));
     }
 }

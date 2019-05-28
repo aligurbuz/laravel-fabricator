@@ -5,7 +5,8 @@ namespace Fabricator\Resource\Contracts;
 interface FabricatorManager
 {
     /**
+     * @param $arguments
      * @return mixed
      */
-    public function generate();
+    public function generate($arguments);
 }

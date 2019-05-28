@@ -7,7 +7,7 @@ use Fabricator\Resource\Contracts\FabricatorManager;
 use Fabricator\Resource\Handler\LaravelFabricatorManager;
 
 /**
- * @method static FabricatorManager generate
+ * @method static FabricatorManager generate($options=array())
  *
  * @see LaravelFabricatorManager
  */
