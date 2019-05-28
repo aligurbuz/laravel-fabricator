@@ -23,3 +23,27 @@ $ composer require aligurbuz/laravel-fabricator
 
 > **Laravel service provider:** After installing the package via the composer,
  you must add the following class to the providers section of the config/app.php file as the laravel service provider installer.
+ 
+ ```code
+ 
+    /*
+     |--------------------------------------------------------------------------
+     | Autoloaded Service Providers
+     |--------------------------------------------------------------------------
+     |
+     | The service providers listed here will be automatically loaded on the
+     | request to your application. Feel free to add your own services to
+     | this array to grant expanded functionality to your applications.
+     |
+     */
+ 
+     'providers' => [
+ 	
+ 	/*
+          * Package Service Providers...
+         */
+        \Fabricator\LaravelFabricatorServiceProvider::class,
+ 
+     ]
+ 
+ ```
