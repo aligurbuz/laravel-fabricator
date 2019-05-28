@@ -2,8 +2,8 @@
 
 namespace Fabricator\Resource\Console;
 
-use Fabricator\Resource\Handler\LaravelFabricatorManager;
 use Illuminate\Console\Command;
+use Fabricator\Resource\Handler\LaravelFabricatorManager;
 
 class FabricatorCommand extends Command
 {
