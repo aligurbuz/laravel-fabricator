@@ -12,3 +12,11 @@ When you type your class management with a fabricator in your projects, you won'
 This is yours it will allow you to increase your code quality and automatically create your factory classes.
 The other benefit of this package is it gives ease of use, as your factory classes are closely linked to annotations.
 The replaceable version of a factory manufacturer is also included in the package.
+
+## Install Package
+
+```bash
+
+$ composer require aligurbuz/laravel-fabricator
+
+```
