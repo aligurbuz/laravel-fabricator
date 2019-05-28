@@ -3,8 +3,8 @@
 namespace Fabricator\Resource\Handler;
 
 use Fabricator\Resource\Contracts\FabricatorManager;
-use Fabricator\Resource\Exception\ManagerFilesCreatingException;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Fabricator\Resource\Exception\ManagerFilesCreatingException;
 
 class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorManager
 {
