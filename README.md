@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/aligurbuz/laravel-fabricator.svg?branch=master)](https://travis-ci.org/aligurbuz/laravel-fabricator)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aligurbuz/laravel-fabricator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aligurbuz/laravel-fabricator/?branch=master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/aligurbuz/laravel-fabricator/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 # Laravel-Fabricator
