@@ -34,7 +34,7 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
     {
         //first we create the fabricator directory.
         if(!$this->files->isDirectory($this->getFabricatorDirectoryPath())){
-            $this->generateManagerForFabricatorDirectory();
+            $this->loadManagerFiles();
 
             if(!$this->isCreated){
                 $this->files->deleteDirectory($this->getFabricatorDirectoryPath());
@@ -52,7 +52,7 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
      *
      * @throws FileNotFoundException
      */
-    public function generateManagerForFabricatorDirectory() : bool
+    public function loadManagerFiles() : bool
     {
         // after making directory checks by using the files object..
         // that is registered in laravel container, we create a directory with the same object.
