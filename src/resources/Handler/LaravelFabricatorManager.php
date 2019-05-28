@@ -34,6 +34,11 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
     {
         //first we create the fabricator directory.
         if(!$this->files->isDirectory($this->getFabricatorDirectoryPath())){
+
+            // after making directory checks by using the files object..
+            // that is registered in laravel container, we create a directory with the same object.
+            $this->isCreated = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
+
             $this->loadManagerFiles();
 
             if(!$this->isCreated){
@@ -54,34 +59,20 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
      */
     public function loadManagerFiles() : bool
     {
-        // after making directory checks by using the files object..
-        // that is registered in laravel container, we create a directory with the same object.
-        $this->isCreated = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
+        if($this->isCreated || $this->files->exists($this->getFabricatorDirectoryPath())){
+            foreach ($this->managerFiles as $file){
 
-        if($this->isCreated){
-            $this->createManagerFiles();
+                $managerFile = 'get'.$file.'File';
+
+                if($this->isCreated && !$this->files->isFile($this->{$managerFile}())){
+                    $managerStub = $this->files->get($this->{$managerFile}(true));
+
+                    $this->isCreated = $this->files->put($this->{$managerFile}(),
+                        $managerStub) === false ?:  true;
+                }
+            }
         }
 
         return $this->isCreated;
-    }
-
-    /**
-     * create manager files for fabricator structure
-     *
-     * @throws FileNotFoundException
-     */
-    private function createManagerFiles()
-    {
-        foreach ($this->managerFiles as $file){
-
-            $managerFile = 'get'.$file.'File';
-
-            if($this->isCreated && !$this->files->isFile($this->{$managerFile}())){
-                $managerStub = $this->files->get($this->{$managerFile}(true));
-
-                $this->isCreated = $this->files->put($this->{$managerFile}(),
-                    $managerStub) === false ?:  true;
-            }
-        }
     }
 }
