@@ -2,10 +2,10 @@
 
 namespace Fabricator\Resource\Handler;
 
-use Fabricator\Resource\Contracts\FactoryManagerContract;
+use Fabricator\Resource\Contracts\FabricatorManager;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
-class LaravelFabricatorManager extends FabricatorAbstract implements FactoryManagerContract
+class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorManager
 {
     /**
      * it generates a fabricator structure with all its everything.

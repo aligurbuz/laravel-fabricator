@@ -2,7 +2,7 @@
 
 namespace Fabricator\Resource\Contracts;
 
-interface FactoryManagerContract
+interface FabricatorManager
 {
     /**
      * @return mixed

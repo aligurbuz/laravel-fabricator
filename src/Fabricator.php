@@ -3,11 +3,11 @@
 namespace Fabricator;
 
 use Illuminate\Support\Facades\Facade;
-use Fabricator\Resource\Contracts\FactoryManagerContract;
+use Fabricator\Resource\Contracts\FabricatorManager;
 use Fabricator\Resource\Handler\LaravelFabricatorManager;
 
 /**
- * @method static FactoryManagerContract generate
+ * @method static FabricatorManager generate
  *
  * @see LaravelFabricatorManager
  */
