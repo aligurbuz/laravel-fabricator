@@ -8,6 +8,20 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorManager
 {
     /**
+     * fabricator manager files
+     *
+     * @var array
+     */
+    protected $managerFiles = ['FabricatorManager','FabricatorAbstract'];
+
+    /**
+     * isCreated information for file process
+     *
+     * @var bool
+     */
+    protected $isCreated = false;
+
+    /**
      * it generates a fabricator structure with all its everything.
      *
      * @return bool|mixed
@@ -27,34 +41,38 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
     /**
      * it generates manager files in fabricator directory.
      *
-     * @return bool
+     * @return void
      *
      * @throws FileNotFoundException
      */
-    public function generateManagerForFabricatorDirectory() : bool
+    public function generateManagerForFabricatorDirectory()
     {
-        $isCreatedFabricatorManagerFile = false;
-
         // after making directory checks by using the files object..
         // that is registered in laravel container, we create a directory with the same object.
-        $isCreatedFabricatorDirectoryPath = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
+        $this->isCreated = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
 
-        //this creates fabricatorManager.php
-        if($isCreatedFabricatorDirectoryPath && !$this->files->isFile($this->getFabricatorManagerFile())){
-            $fabricatorManagerStub = $this->files->get($this->getFabricatorManagerInStub());
-
-            $isCreatedFabricatorManagerFile = $this->files->put($this->getFabricatorManagerFile(),
-                $fabricatorManagerStub) === false ?:  true;
+        if($this->isCreated){
+            $this->createManagerFiles();
         }
+    }
 
-        //this creates fabricatorAbstract.php
-        if($isCreatedFabricatorManagerFile && !$this->files->isFile($this->getFabricatorAbstractFile())){
-            $fabricatorAbstractStub = $this->files->get($this->getFabricatorAbstractInStub());
+    /**
+     * create manager files for fabricator structure
+     *
+     * @throws FileNotFoundException
+     */
+    protected function createManagerFiles()
+    {
+        foreach ($this->managerFiles as $file){
 
-            return $this->files->put($this->getFabricatorAbstractFile(),
-                $fabricatorAbstractStub) === false ?:  true;
+            $managerFile = 'get'.$file.'File';
+
+            if($this->isCreated && !$this->files->isFile($this->{$managerFile}())){
+                $managerStub = $this->files->get($this->{$managerFile}(true));
+
+                $this->isCreated = $this->files->put($this->{$managerFile}(),
+                    $managerStub) === false ?:  true;
+            }
         }
-
-        return false;
     }
 }

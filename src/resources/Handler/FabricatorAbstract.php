@@ -69,20 +69,28 @@ abstract class FabricatorAbstract
     /**
      * get fabricator manager file name
      *
+     * @param bool $stub
      * @return string
      */
-    public function getFabricatorManagerFile()
+    public function getFabricatorManagerFile($stub=false)
     {
+        if($stub){
+            return $this->getFabricatorManagerInStub();
+        }
         return implode(DIRECTORY_SEPARATOR,[$this->getFabricatorDirectoryPath(),'FabricatorManager.php']);
     }
 
     /**
      * get fabricator abstract file name
      *
+     * @param bool $stub
      * @return string
      */
-    public function getFabricatorAbstractFile()
+    public function getFabricatorAbstractFile($stub=false)
     {
+        if($stub){
+            return $this->getFabricatorAbstractInStub();
+        }
         return implode(DIRECTORY_SEPARATOR,[$this->getFabricatorDirectoryPath(),'FabricatorAbstract.php']);
     }
 
