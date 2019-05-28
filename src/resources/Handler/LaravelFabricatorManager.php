@@ -42,13 +42,17 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
         //this creates fabricatorManager.php
         if($isCreatedFabricatorDirectoryPath && !$this->files->isFile($this->getFabricatorManagerFile())){
             $fabricatorManagerStub = $this->files->get($this->getFabricatorManagerInStub());
-            $isCreatedFabricatorManagerFile = $this->files->put($this->getFabricatorManagerFile(),$fabricatorManagerStub) === false ?:  true;
+
+            $isCreatedFabricatorManagerFile = $this->files->put($this->getFabricatorManagerFile(),
+                $fabricatorManagerStub) === false ?:  true;
         }
 
         //this creates fabricatorAbstract.php
         if($isCreatedFabricatorManagerFile && !$this->files->isFile($this->getFabricatorAbstractFile())){
             $fabricatorAbstractStub = $this->files->get($this->getFabricatorAbstractInStub());
-            return $this->files->put($this->getFabricatorAbstractFile(),$fabricatorAbstractStub) === false ?:  true;
+
+            return $this->files->put($this->getFabricatorAbstractFile(),
+                $fabricatorAbstractStub) === false ?:  true;
         }
 
         return false;
