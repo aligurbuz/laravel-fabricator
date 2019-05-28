@@ -21,5 +21,5 @@ $ composer require aligurbuz/laravel-fabricator
 
 ```
 
-> **Laravel service provider:** After installing the package through the composer,
- you must add the following class to the providers section of the config / app.php file as the laravel service provider installer.
+> **Laravel service provider:** After installing the package via the composer,
+ you must add the following class to the providers section of the config/app.php file as the laravel service provider installer.
