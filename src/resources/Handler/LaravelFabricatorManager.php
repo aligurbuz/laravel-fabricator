@@ -41,11 +41,11 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
     /**
      * it generates manager files in fabricator directory.
      *
-     * @return void
+     * @return bool
      *
      * @throws FileNotFoundException
      */
-    public function generateManagerForFabricatorDirectory()
+    public function generateManagerForFabricatorDirectory() : bool
     {
         // after making directory checks by using the files object..
         // that is registered in laravel container, we create a directory with the same object.
@@ -54,6 +54,8 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
         if($this->isCreated){
             $this->createManagerFiles();
         }
+
+        return $this->isCreated;
     }
 
     /**
