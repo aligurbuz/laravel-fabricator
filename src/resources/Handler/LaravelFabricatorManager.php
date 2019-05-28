@@ -57,7 +57,7 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
      *
      * @throws FileNotFoundException
      */
-    public function loadManagerFiles() : bool
+    protected function loadManagerFiles() : bool
     {
         if($this->files->exists($this->getFabricatorDirectoryPath())){
             foreach ($this->managerFiles as $file){
