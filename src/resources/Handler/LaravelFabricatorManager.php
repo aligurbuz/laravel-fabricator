@@ -70,7 +70,7 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
      *
      * @throws FileNotFoundException
      */
-    protected function createManagerFiles()
+    private function createManagerFiles()
     {
         foreach ($this->managerFiles as $file){
 
