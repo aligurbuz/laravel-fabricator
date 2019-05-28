@@ -33,8 +33,6 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
     public function generate()
     {
         // first we create the fabricator directory.
-        // after making directory checks by using the files object..
-        // that is registered in laravel container, we create a directory with the same object.
         $this->setFabricatorDirectoryPath();
 
         // the manager files must be installed...
