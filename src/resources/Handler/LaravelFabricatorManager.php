@@ -32,21 +32,18 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
      */
     public function generate()
     {
-        //first we create the fabricator directory.
-        if(!$this->files->isDirectory($this->getFabricatorDirectoryPath())){
+        // first we create the fabricator directory.
+        // after making directory checks by using the files object..
+        // that is registered in laravel container, we create a directory with the same object.
+        $this->setFabricatorDirectoryPath();
 
-            // after making directory checks by using the files object..
-            // that is registered in laravel container, we create a directory with the same object.
-            $this->setFabricatorDirectoryPath();
+        // the manager files must be installed...
+        // after the fabricator directory is created.
+        $this->setFabricatorManagerFiles();
 
-            // the manager files must be installed...
-            // after the fabricator directory is created.
-            $this->setFabricatorManagerFiles();
-
-            if(!$this->isCreated){
-                $this->files->deleteDirectory($this->getFabricatorDirectoryPath());
-                throw new ManagerFilesCreatingException;
-            }
+        if(!$this->isCreated){
+            $this->files->deleteDirectory($this->getFabricatorDirectoryPath());
+            throw new ManagerFilesCreatingException;
         }
 
         return true;
@@ -89,7 +86,9 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
     public function setFabricatorDirectoryPath() : bool
     {
         //set fabricator directory
-        $this->isCreated = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
+        if(!$this->files->isDirectory($this->getFabricatorDirectoryPath())){
+            $this->isCreated = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
+        }
 
         return $this->isCreated;
     }
