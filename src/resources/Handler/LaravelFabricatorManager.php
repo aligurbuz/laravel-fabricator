@@ -36,8 +36,6 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
         if(!$this->files->isDirectory($this->getFabricatorDirectoryPath())){
             $this->generateManagerForFabricatorDirectory();
 
-            // if there is any error in the creation of the manager files,
-            // we destroy the fabricator structure directly.
             if(!$this->isCreated){
                 $this->files->deleteDirectory($this->getFabricatorDirectoryPath());
                 throw new ManagerFilesCreatingException;
