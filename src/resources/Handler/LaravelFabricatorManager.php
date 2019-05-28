@@ -39,6 +39,8 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
             // that is registered in laravel container, we create a directory with the same object.
             $this->isCreated = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
 
+            // the manager files must be installed...
+            // after the fabricator directory is created.
             $this->loadManagerFiles();
 
             if(!$this->isCreated){
