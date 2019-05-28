@@ -48,6 +48,21 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
     }
 
     /**
+     * set fabricator directory path
+     *
+     * @return bool
+     */
+    public function setFabricatorDirectoryPath() : bool
+    {
+        //set fabricator directory
+        if(!$this->files->isDirectory($this->getFabricatorDirectoryPath())){
+            $this->isCreated = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
+        }
+
+        return $this->isCreated;
+    }
+
+    /**
      * it generates manager files in fabricator directory.
      *
      * @return bool
@@ -71,21 +86,6 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
                         $managerStub) === false ?:  true;
                 }
             }
-        }
-
-        return $this->isCreated;
-    }
-
-    /**
-     * set fabricator directory path
-     *
-     * @return bool
-     */
-    public function setFabricatorDirectoryPath() : bool
-    {
-        //set fabricator directory
-        if(!$this->files->isDirectory($this->getFabricatorDirectoryPath())){
-            $this->isCreated = $this->files->makeDirectory($this->getFabricatorDirectoryPath());
         }
 
         return $this->isCreated;
