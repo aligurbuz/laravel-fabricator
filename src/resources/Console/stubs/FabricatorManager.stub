@@ -2,7 +2,11 @@
 
 namespace App\Fabricator;
 
-class FabricatorManager
+/**
+ * Class FabricatorManager
+ * @package App\Fabricator
+ */
+class FabricatorManager extends FabricatorAbstract
 {
-
+    //
 }

@@ -1,0 +1,49 @@
+<?php
+
+namespace App\Fabricator;
+
+abstract class FabricatorAbstract
+{
+    /**
+     * @var array
+     */
+    protected static $instance = [];
+
+    /**
+     * @var object
+     */
+    protected $fabricator;
+
+    /**
+     * FabricatorAbstract constructor.
+     * @param null $fabricator
+     */
+    public function __construct($fabricator=null)
+    {
+        $this->fabricator = $fabricator;
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    protected static function singleton($data)
+    {
+        if(!isset(static::$instance[$data])){
+            static::$instance[$data] = new $data(new static());
+        }
+        return static::$instance[$data];
+    }
+
+    /**
+     * @param $name
+     * @return null
+     */
+    public function __get($name)
+    {
+        if(method_exists($this,$name)){
+            return $this->{$name}();
+        }
+        return null;
+    }
+}
