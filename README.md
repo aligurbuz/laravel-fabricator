@@ -33,7 +33,7 @@ $ composer require aligurbuz/laravel-fabricator
  	/*
           * Package Service Providers...
          */
-        \Fabricator\LaravelFabricatorServiceProvider::class,
+        Fabricator\LaravelFabricatorServiceProvider::class,
  
      ]
  
