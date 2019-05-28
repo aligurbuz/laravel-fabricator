@@ -20,7 +20,7 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
      *
      * @var bool
      */
-    protected $isCreated = false;
+    protected $isCreated = true;
 
     /**
      * it generates a fabricator structure with all its everything.
