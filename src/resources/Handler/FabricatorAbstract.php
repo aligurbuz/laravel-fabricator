@@ -30,6 +30,13 @@ abstract class FabricatorAbstract
     protected $arguments;
 
     /**
+     * isCreated information for file process
+     *
+     * @var bool
+     */
+    protected $isCreated = true;
+
+    /**
      * FabricatorAbstract constructor.
      * @param Application $app
      *
@@ -182,5 +189,36 @@ abstract class FabricatorAbstract
     public function hasOption($argument=null)
     {
         return isset($this->arguments[$argument]);
+    }
+
+    /**
+     * it generates manager files.
+     *
+     * @param $path
+     * @param $files
+     * @return bool
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function setManagerFiles($path,$files) : bool
+    {
+        //manager files can only be created if the fabricator directory is available.
+        if($this->files->exists($path)){
+            foreach ($files as $file){
+
+                $managerFile = 'get'.$file.'File';
+
+                // the manager files will be created
+                // if the isCreated property is true and the file does not exist.
+                if($this->isCreated && !$this->files->isFile($this->{$managerFile}())){
+                    $managerStub = $this->files->get($this->{$managerFile}(true));
+
+                    $this->isCreated = $this->files->put($this->{$managerFile}(),
+                        $managerStub) === false ?:  true;
+                }
+            }
+        }
+
+        return $this->isCreated;
     }
 }
