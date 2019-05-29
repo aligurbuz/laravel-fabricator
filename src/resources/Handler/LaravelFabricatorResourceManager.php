@@ -52,7 +52,8 @@ class LaravelFabricatorResourceManager extends FabricatorAbstract implements Fab
     public function setFabricatorSourcePath() : bool
     {
         //set fabricator source directory
-        if($this->files->isDirectory($this->getFabricatorDirectoryPath())){
+        if($this->files->isDirectory($this->getFabricatorDirectoryPath())
+            && !$this->files->exists($this->getFabricatorSourcePath())){
             $this->isCreated = $this->files->makeDirectory($this->getFabricatorSourcePath());
         }
 
@@ -63,12 +64,13 @@ class LaravelFabricatorResourceManager extends FabricatorAbstract implements Fab
      * it generates source files in fabricator source directory.
      *
      * @return bool
+     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function setFabricatorSourceManagerFiles() : bool
     {
         //manager files can only be created if the fabricator directory is available.
-        if($this->files->exists($this->getFabricatorDirectoryPath())){
+        if($this->files->exists($this->getFabricatorSourcePath())){
             foreach ($this->sourceFiles as $file){
 
                 $managerFile = 'get'.$file.'File';
