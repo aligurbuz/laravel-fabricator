@@ -45,8 +45,7 @@ class LaravelFabricatorResourceManager extends FabricatorAbstract implements Fab
     public function setFabricatorSourcePath() : bool
     {
         //set fabricator source directory
-        if($this->files->isDirectory($this->getFabricatorDirectoryPath())
-            && !$this->files->exists($this->getFabricatorSourcePath())){
+        if(!$this->files->exists($this->getFabricatorSourcePath())){
             $this->isCreated = $this->files->makeDirectory($this->getFabricatorSourcePath());
         }
 
