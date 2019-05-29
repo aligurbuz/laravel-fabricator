@@ -23,7 +23,7 @@ class LaravelFabricatorResourceManager extends FabricatorAbstract implements Fab
     public function generate()
     {
         // first we create the fabricator source directory.
-        $this->setFabricatorSourcePath();
+        $this->setDirectoryPath($this->getFabricatorSourcePath());
 
         // the source manager files must be installed...
         // after the fabricator source directory is created.
@@ -35,20 +35,5 @@ class LaravelFabricatorResourceManager extends FabricatorAbstract implements Fab
         }
 
         return true;
-    }
-
-    /**
-     * set fabricator directory path
-     *
-     * @return bool
-     */
-    public function setFabricatorSourcePath() : bool
-    {
-        //set fabricator source directory
-        if(!$this->files->exists($this->getFabricatorSourcePath())){
-            $this->isCreated = $this->files->makeDirectory($this->getFabricatorSourcePath());
-        }
-
-        return $this->isCreated;
     }
 }

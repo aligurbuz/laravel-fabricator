@@ -192,6 +192,21 @@ abstract class FabricatorAbstract
     }
 
     /**
+     * set directory path
+     *
+     * @return bool
+     */
+    public function setDirectoryPath($path) : bool
+    {
+        //set fabricator directory
+        if(!$this->files->isDirectory($path)){
+            $this->isCreated = $this->files->makeDirectory($path);
+        }
+
+        return $this->isCreated;
+    }
+
+    /**
      * it generates manager files.
      *
      * @param $path
