@@ -137,4 +137,50 @@ abstract class FabricatorAbstract
     {
         return implode(DIRECTORY_SEPARATOR,[__DIR__,'..','Console','stubs','FabricatorHelper.stub']);
     }
+
+    /**
+     * get fabricator source path
+     *
+     * @return string
+     */
+    public function getFabricatorSourcePath()
+    {
+        return implode(DIRECTORY_SEPARATOR,[$this->getFabricatorDirectoryPath(),
+            ucfirst($this->arguments['fabricator'])]);
+    }
+
+    /**
+     * get fabricator source manager file
+     *
+     * @param bool $stub
+     * @return string
+     */
+    public function getFabricatorSourceManagerFile($stub=false)
+    {
+        if($stub){
+            return $this->getFabricatorSourceManagerInStub();
+        }
+        return implode(DIRECTORY_SEPARATOR,[$this->getFabricatorSourcePath(),''.ucfirst($this->arguments['fabricator']).'Manager.php']);
+    }
+
+    /**
+     * get fabricator source manager stub file in console directory
+     *
+     * @return string
+     */
+    public function getFabricatorSourceManagerInStub()
+    {
+        return implode(DIRECTORY_SEPARATOR,[__DIR__,'..','Console','stubs','FabricatorSourceManager.stub']);
+    }
+
+    /**
+     * check if available console argument
+     *
+     * @param null|string $argument
+     * @return bool
+     */
+    public function hasOption($argument=null)
+    {
+        return isset($this->arguments[$argument]);
+    }
 }

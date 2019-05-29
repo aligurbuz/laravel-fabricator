@@ -3,7 +3,7 @@
 namespace Fabricator\Resource\Console;
 
 use Illuminate\Console\Command;
-use Fabricator\Resource\Handler\LaravelFabricatorManager;
+use Fabricator\Resource\Contracts\FabricatorManager;
 
 class FabricatorCommand extends Command
 {
@@ -37,14 +37,19 @@ class FabricatorCommand extends Command
      *
      * @return void
      *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     * @throws \Fabricator\Resource\Exception\ManagerFilesCreatingException
      */
     public function handle()
     {
-        /** @var LaravelFabricatorManager $fabricator */
-        $fabricator = app('fabricator.manager',$this->options());
+        /** @var FabricatorManager $fabricator */
+        $fabricatorManager = app('fabricator.manager',$this->options());
 
-        $this->info($fabricator->generate());
+        if($fabricatorManager->generate()){
+
+            /** @var FabricatorManager $fabricator */
+            $fabricatorResource = app('fabricator.resource',$this->options());
+
+        }
+
+        $this->info($fabricatorResource->generate());
     }
 }

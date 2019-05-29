@@ -1,0 +1,10 @@
+<?php
+
+namespace Fabricator\__fabricator__;
+
+use App\Fabricator\FabricatorManager;
+
+class __fabricator__Manager extends FabricatorManager
+{
+
+}

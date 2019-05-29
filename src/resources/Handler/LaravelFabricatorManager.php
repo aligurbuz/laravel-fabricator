@@ -9,7 +9,7 @@ use Fabricator\Resource\Exception\ManagerFilesCreatingException;
 class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorManager
 {
     /**
-     * fabricator manager files
+     * generates fabricator manager files
      *
      * @var array
      */
