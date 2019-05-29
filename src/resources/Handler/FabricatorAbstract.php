@@ -95,6 +95,20 @@ abstract class FabricatorAbstract
     }
 
     /**
+     * get fabricator helper file name
+     *
+     * @param bool $stub
+     * @return string
+     */
+    public function getFabricatorHelperFile($stub=false)
+    {
+        if($stub){
+            return $this->getFabricatorHelperInStub();
+        }
+        return implode(DIRECTORY_SEPARATOR,[$this->getFabricatorDirectoryPath(),'FabricatorHelper.php']);
+    }
+
+    /**
      * get fabricator manager stub file in console directory
      *
      * @return string
@@ -112,5 +126,15 @@ abstract class FabricatorAbstract
     public function getFabricatorAbstractInStub()
     {
         return implode(DIRECTORY_SEPARATOR,[__DIR__,'..','Console','stubs','FabricatorAbstract.stub']);
+    }
+
+    /**
+     * get fabricator helper stub file in console directory
+     *
+     * @return string
+     */
+    public function getFabricatorHelperInStub()
+    {
+        return implode(DIRECTORY_SEPARATOR,[__DIR__,'..','Console','stubs','FabricatorHelper.stub']);
     }
 }

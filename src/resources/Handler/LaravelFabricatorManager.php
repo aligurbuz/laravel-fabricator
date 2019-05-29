@@ -13,7 +13,7 @@ class LaravelFabricatorManager extends FabricatorAbstract implements FabricatorM
      *
      * @var array
      */
-    protected $managerFiles = ['FabricatorManager','FabricatorAbstract'];
+    protected $managerFiles = ['FabricatorManager','FabricatorAbstract','FabricatorHelper'];
 
     /**
      * isCreated information for file process

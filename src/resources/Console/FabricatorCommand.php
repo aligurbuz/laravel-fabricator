@@ -38,11 +38,12 @@ class FabricatorCommand extends Command
      * @return void
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \Fabricator\Resource\Exception\ManagerFilesCreatingException
      */
     public function handle()
     {
         /** @var LaravelFabricatorManager $fabricator */
-        $fabricator = app('fabricator',$this->options());
+        $fabricator = app('fabricator.manager',$this->options());
 
         $this->info($fabricator->generate());
     }
