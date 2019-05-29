@@ -207,15 +207,31 @@ abstract class FabricatorAbstract
     }
 
     /**
+     * get replacement variables
+     *
+     * @param array $replacement
+     * @return array
+     */
+    public function replacementVariables($replacement=array())
+    {
+        $replacementVaribles = array_merge($this->arguments,$replacement);
+
+        return array_map(function($item){
+            return ucfirst($item);
+        },$replacementVaribles);
+    }
+
+    /**
      * it generates manager files.
      *
      * @param $path
      * @param $files
+     * @param array $replacement
      * @return bool
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function setManagerFiles($path,$files) : bool
+    public function setManagerFiles($path,$files,$replacement=array()) : bool
     {
         //manager files can only be created if the fabricator directory is available.
         if($this->files->exists($path)){
@@ -230,6 +246,20 @@ abstract class FabricatorAbstract
 
                     $this->isCreated = $this->files->put($this->{$managerFile}(),
                         $managerStub) === false ?:  true;
+
+                    if($this->isCreated){
+
+                        $replacementVariables = $this->replacementVariables($replacement);
+                        $content = $this->files->get($this->{$managerFile}());
+
+                        foreach ($replacementVariables as $key=>$replacementVariable){
+                            $search = '/\['.$key.'\]/';
+                            $replace = $replacementVariable;
+                            $content = preg_replace($search,$replace,$content);
+                        }
+
+                        $this->files->replace($this->{$managerFile}(),$content);
+                    }
                 }
             }
         }
