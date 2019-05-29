@@ -40,16 +40,18 @@ class FabricatorCommand extends Command
      */
     public function handle()
     {
-        /** @var FabricatorManager $fabricator */
+        /** @var FabricatorManager $fabricatorManager */
         $fabricatorManager = app('fabricator.manager',$this->options());
 
         if($fabricatorManager->generate()){
 
-            /** @var FabricatorManager $fabricator */
+            /** @var FabricatorManager $fabricatorResource */
             $fabricatorResource = app('fabricator.resource',$this->options());
+
+            $this->info($fabricatorResource->generate());
 
         }
 
-        $this->info($fabricatorResource->generate());
+
     }
 }
