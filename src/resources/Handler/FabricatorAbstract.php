@@ -194,6 +194,7 @@ abstract class FabricatorAbstract
     /**
      * set directory path
      *
+     * @param $path
      * @return bool
      */
     public function setDirectoryPath($path) : bool
@@ -219,6 +220,29 @@ abstract class FabricatorAbstract
         return array_map(function($item){
             return ucfirst($item);
         },$replacementVaribles);
+    }
+
+    /**
+     * replace with replacement variables content of the given file
+     *
+     * @param $replacement
+     * @param $file
+     * @return void
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function replaceFileContent($replacement,$file)
+    {
+        $replacementVariables = $this->replacementVariables($replacement);
+        $content = $this->files->get($file);
+
+        foreach ($replacementVariables as $key=>$replacementVariable){
+            $search = '/\['.$key.'\]/';
+            $replace = $replacementVariable;
+            $content = preg_replace($search,$replace,$content);
+        }
+
+        $this->files->replace($file,$content);
     }
 
     /**
@@ -248,17 +272,8 @@ abstract class FabricatorAbstract
                         $managerStub) === false ?:  true;
 
                     if($this->isCreated){
-
-                        $replacementVariables = $this->replacementVariables($replacement);
-                        $content = $this->files->get($this->{$managerFile}());
-
-                        foreach ($replacementVariables as $key=>$replacementVariable){
-                            $search = '/\['.$key.'\]/';
-                            $replace = $replacementVariable;
-                            $content = preg_replace($search,$replace,$content);
-                        }
-
-                        $this->files->replace($this->{$managerFile}(),$content);
+                        //replace with replacement variables content of file
+                        $this->replaceFileContent($replacement,$this->{$managerFile}());
                     }
                 }
             }
