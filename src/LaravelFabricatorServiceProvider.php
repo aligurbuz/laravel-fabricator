@@ -41,6 +41,6 @@ class LaravelFabricatorServiceProvider extends ServiceProvider implements Deferr
      */
     public function provides()
     {
-        return ['fabricator'];
+        return ['fabricator.manager','fabricator.resource'];
     }
 }
